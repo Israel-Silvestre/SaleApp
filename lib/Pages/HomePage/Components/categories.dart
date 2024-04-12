@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class RectangularItem extends StatelessWidget {
-  final String title;
+  final String name;
   final String imagePath;
 
   const RectangularItem({
     Key? key,
-    required this.title,
+    required this.name,
     required this.imagePath,
   }) : super(key: key);
 
@@ -35,7 +35,7 @@ class RectangularItem extends StatelessWidget {
                   imagePath,
                   height: 70,
                   width: 80,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.cover, // Evita que a imagem seja cortada
                 ),
               ),
             ),
@@ -44,7 +44,7 @@ class RectangularItem extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  title,
+                  name,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16,
@@ -62,25 +62,29 @@ class RectangularItem extends StatelessWidget {
 }
 
 class SquareItem extends StatelessWidget {
-  final String title;
+  final String name;
   final String imagePath;
   final double squareHeight;
+  final double squareWidth;
 
   const SquareItem({
     Key? key,
-    required this.title,
+    required this.name,
     required this.imagePath,
-    this.squareHeight = 80,
+    required this.squareHeight,
+    required this.squareWidth,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Calculando a altura da imagem com base na altura do quadrado
+    // Calculando a altura e largura da imagem com base na altura do quadrado
     double imageHeight = squareHeight - 24; // Subtraindo a margem interna ao redor da imagem
+    double imageWidth = squareWidth - 24; // Subtraindo a margem interna ao redor da imagem
 
     return Expanded(
       child: Container(
         height: squareHeight,
+        width: squareWidth,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -102,8 +106,8 @@ class SquareItem extends StatelessWidget {
                   child: Image.asset(
                     imagePath,
                     height: imageHeight,
-                    width: imageHeight,
-                    fit: BoxFit.cover,
+                    width: imageWidth,
+                    fit: BoxFit.contain, // Evita que a imagem seja cortada
                   ),
                 ),
               ),
@@ -113,7 +117,7 @@ class SquareItem extends StatelessWidget {
               left: 0,
               right: 0,
               child: Text(
-                title,
+                name,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16,
