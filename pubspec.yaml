@@ -56,6 +56,7 @@ flutter:
     - assets/logo.png
     - assets/gaming.png
     - assets/celular.png
+    - assets/tv.png
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
